@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.TutuUserEntityMapper">
+    <resultMap id="BaseResultMap" type="com.test.entity.TutuUserEntity">
+        <id column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="head_image" jdbcType="VARCHAR" property="headImage"/>
+        <result column="reg_ip" jdbcType="VARCHAR" property="regIp"/>
+        <result column="reg_date" jdbcType="INTEGER" property="regDate"/>
+        <result column="im_key" jdbcType="VARCHAR" property="imKey"/>
+        <result column="im_token" jdbcType="VARCHAR" property="imToken"/>
+        <result column="lat" jdbcType="VARCHAR" property="lat"/>
+        <result column="lng" jdbcType="VARCHAR" property="lng"/>
+        <result column="point" jdbcType="VARCHAR" property="point"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="login_count" jdbcType="INTEGER" property="loginCount"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="is_del" jdbcType="BIT" property="isDel"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    uid, nick_name, mobile, password, gender, head_image, reg_ip, reg_date, im_key, im_token, 
+    lat, lng, point, group_id, login_count, status, is_del
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tutu_user
+        where uid = #{uid,jdbcType=INTEGER}
+    </select>
+    <select id="selectByMobile" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tutu_user
+        where mobile=  #{mobile,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tutu_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.test.entity.TutuUserEntity">
+    insert into tutu_user (uid, nick_name, mobile, 
+      password, gender, head_image, 
+      reg_ip, reg_date, im_key, 
+      im_token, lat, lng, 
+      point, group_id, login_count, 
+      status, is_del)
+    values (#{uid,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{headImage,jdbcType=VARCHAR}, 
+      #{regIp,jdbcType=VARCHAR}, #{regDate,jdbcType=INTEGER}, #{imKey,jdbcType=VARCHAR}, 
+      #{imToken,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, 
+      #{point,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, #{loginCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{isDel,jdbcType=BIT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.test.entity.TutuUserEntity">
+        insert into tutu_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="headImage != null">
+                head_image,
+            </if>
+            <if test="regIp != null">
+                reg_ip,
+            </if>
+            <if test="regDate != null">
+                reg_date,
+            </if>
+            <if test="imKey != null">
+                im_key,
+            </if>
+            <if test="imToken != null">
+                im_token,
+            </if>
+            <if test="lat != null">
+                lat,
+            </if>
+            <if test="lng != null">
+                lng,
+            </if>
+            <if test="point != null">
+                point,
+            </if>
+            <if test="groupId != null">
+                group_id,
+            </if>
+            <if test="loginCount != null">
+                login_count,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="isDel != null">
+                is_del,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="headImage != null">
+                #{headImage,jdbcType=VARCHAR},
+            </if>
+            <if test="regIp != null">
+                #{regIp,jdbcType=VARCHAR},
+            </if>
+            <if test="regDate != null">
+                #{regDate,jdbcType=INTEGER},
+            </if>
+            <if test="imKey != null">
+                #{imKey,jdbcType=VARCHAR},
+            </if>
+            <if test="imToken != null">
+                #{imToken,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null">
+                #{lat,jdbcType=VARCHAR},
+            </if>
+            <if test="lng != null">
+                #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="point != null">
+                #{point,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null">
+                #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="loginCount != null">
+                #{loginCount,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isDel != null">
+                #{isDel,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.test.entity.TutuUserEntity">
+        update tutu_user
+        <set>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="headImage != null">
+                head_image = #{headImage,jdbcType=VARCHAR},
+            </if>
+            <if test="regIp != null">
+                reg_ip = #{regIp,jdbcType=VARCHAR},
+            </if>
+            <if test="regDate != null">
+                reg_date = #{regDate,jdbcType=INTEGER},
+            </if>
+            <if test="imKey != null">
+                im_key = #{imKey,jdbcType=VARCHAR},
+            </if>
+            <if test="imToken != null">
+                im_token = #{imToken,jdbcType=VARCHAR},
+            </if>
+            <if test="lat != null">
+                lat = #{lat,jdbcType=VARCHAR},
+            </if>
+            <if test="lng != null">
+                lng = #{lng,jdbcType=VARCHAR},
+            </if>
+            <if test="point != null">
+                point = #{point,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="loginCount != null">
+                login_count = #{loginCount,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="isDel != null">
+                is_del = #{isDel,jdbcType=BIT},
+            </if>
+        </set>
+        where uid = #{uid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.test.entity.TutuUserEntity">
+    update tutu_user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      head_image = #{headImage,jdbcType=VARCHAR},
+      reg_ip = #{regIp,jdbcType=VARCHAR},
+      reg_date = #{regDate,jdbcType=INTEGER},
+      im_key = #{imKey,jdbcType=VARCHAR},
+      im_token = #{imToken,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      point = #{point,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=INTEGER},
+      login_count = #{loginCount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=BIT}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

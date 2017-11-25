@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.TripInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.test.entity.TripInfoEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="trip_no" jdbcType="VARCHAR" property="tripNo" />
+    <result column="contacter_name" jdbcType="VARCHAR" property="contacterName" />
+    <result column="contacter_mobile" jdbcType="VARCHAR" property="contacterMobile" />
+    <result column="iqty" jdbcType="INTEGER" property="iqty" />
+    <result column="bgndate" jdbcType="INTEGER" property="bgndate" />
+    <result column="enddate" jdbcType="INTEGER" property="enddate" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+    <result column="cancel_reson" jdbcType="VARCHAR" property="cancelReson" />
+    <result column="cancel_time" jdbcType="INTEGER" property="cancelTime" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="guider_name" jdbcType="VARCHAR" property="guiderName" />
+    <result column="guider_sex" jdbcType="BIT" property="guiderSex" />
+    <result column="guider_age" jdbcType="VARCHAR" property="guiderAge" />
+    <result column="guider_code" jdbcType="VARCHAR" property="guiderCode" />
+    <result column="guider_img" jdbcType="VARCHAR" property="guiderImg" />
+    <result column="guider_mobile" jdbcType="VARCHAR" property="guiderMobile" />
+    <result column="face_addr" jdbcType="VARCHAR" property="faceAddr" />
+    <result column="balancetype" jdbcType="VARCHAR" property="balancetype" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.test.entity.TripInfoEntity">
+    <result column="members" jdbcType="LONGVARCHAR" property="members" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trip_no, contacter_name, contacter_mobile, iqty, bgndate, enddate, language, 
+    cancel_reson, cancel_time, city, memo, guider_name, guider_sex, guider_age, guider_code, 
+    guider_img, guider_mobile, face_addr, balancetype
+  </sql>
+  <sql id="Blob_Column_List">
+    members
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from trip_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trip_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.entity.TripInfoEntity">
+    insert into trip_info (id, trip_no, contacter_name, 
+      contacter_mobile, iqty, bgndate, 
+      enddate, language, cancel_reson, 
+      cancel_time, city, memo, 
+      guider_name, guider_sex, guider_age, 
+      guider_code, guider_img, guider_mobile, 
+      face_addr, balancetype, members
+      )
+    values (#{id,jdbcType=INTEGER}, #{tripNo,jdbcType=VARCHAR}, #{contacterName,jdbcType=VARCHAR}, 
+      #{contacterMobile,jdbcType=VARCHAR}, #{iqty,jdbcType=INTEGER}, #{bgndate,jdbcType=INTEGER}, 
+      #{enddate,jdbcType=INTEGER}, #{language,jdbcType=VARCHAR}, #{cancelReson,jdbcType=VARCHAR}, 
+      #{cancelTime,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{guiderName,jdbcType=VARCHAR}, #{guiderSex,jdbcType=BIT}, #{guiderAge,jdbcType=VARCHAR}, 
+      #{guiderCode,jdbcType=VARCHAR}, #{guiderImg,jdbcType=VARCHAR}, #{guiderMobile,jdbcType=VARCHAR}, 
+      #{faceAddr,jdbcType=VARCHAR}, #{balancetype,jdbcType=VARCHAR}, #{members,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.entity.TripInfoEntity">
+    insert into trip_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tripNo != null">
+        trip_no,
+      </if>
+      <if test="contacterName != null">
+        contacter_name,
+      </if>
+      <if test="contacterMobile != null">
+        contacter_mobile,
+      </if>
+      <if test="iqty != null">
+        iqty,
+      </if>
+      <if test="bgndate != null">
+        bgndate,
+      </if>
+      <if test="enddate != null">
+        enddate,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+      <if test="cancelReson != null">
+        cancel_reson,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="guiderName != null">
+        guider_name,
+      </if>
+      <if test="guiderSex != null">
+        guider_sex,
+      </if>
+      <if test="guiderAge != null">
+        guider_age,
+      </if>
+      <if test="guiderCode != null">
+        guider_code,
+      </if>
+      <if test="guiderImg != null">
+        guider_img,
+      </if>
+      <if test="guiderMobile != null">
+        guider_mobile,
+      </if>
+      <if test="faceAddr != null">
+        face_addr,
+      </if>
+      <if test="balancetype != null">
+        balancetype,
+      </if>
+      <if test="members != null">
+        members,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tripNo != null">
+        #{tripNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contacterName != null">
+        #{contacterName,jdbcType=VARCHAR},
+      </if>
+      <if test="contacterMobile != null">
+        #{contacterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="iqty != null">
+        #{iqty,jdbcType=INTEGER},
+      </if>
+      <if test="bgndate != null">
+        #{bgndate,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=INTEGER},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReson != null">
+        #{cancelReson,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderName != null">
+        #{guiderName,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderSex != null">
+        #{guiderSex,jdbcType=BIT},
+      </if>
+      <if test="guiderAge != null">
+        #{guiderAge,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderCode != null">
+        #{guiderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderImg != null">
+        #{guiderImg,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderMobile != null">
+        #{guiderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="faceAddr != null">
+        #{faceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="balancetype != null">
+        #{balancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="members != null">
+        #{members,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.entity.TripInfoEntity">
+    update trip_info
+    <set>
+      <if test="tripNo != null">
+        trip_no = #{tripNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contacterName != null">
+        contacter_name = #{contacterName,jdbcType=VARCHAR},
+      </if>
+      <if test="contacterMobile != null">
+        contacter_mobile = #{contacterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="iqty != null">
+        iqty = #{iqty,jdbcType=INTEGER},
+      </if>
+      <if test="bgndate != null">
+        bgndate = #{bgndate,jdbcType=INTEGER},
+      </if>
+      <if test="enddate != null">
+        enddate = #{enddate,jdbcType=INTEGER},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReson != null">
+        cancel_reson = #{cancelReson,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderName != null">
+        guider_name = #{guiderName,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderSex != null">
+        guider_sex = #{guiderSex,jdbcType=BIT},
+      </if>
+      <if test="guiderAge != null">
+        guider_age = #{guiderAge,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderCode != null">
+        guider_code = #{guiderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderImg != null">
+        guider_img = #{guiderImg,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderMobile != null">
+        guider_mobile = #{guiderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="faceAddr != null">
+        face_addr = #{faceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="balancetype != null">
+        balancetype = #{balancetype,jdbcType=VARCHAR},
+      </if>
+      <if test="members != null">
+        members = #{members,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.test.entity.TripInfoEntity">
+    update trip_info
+    set trip_no = #{tripNo,jdbcType=VARCHAR},
+      contacter_name = #{contacterName,jdbcType=VARCHAR},
+      contacter_mobile = #{contacterMobile,jdbcType=VARCHAR},
+      iqty = #{iqty,jdbcType=INTEGER},
+      bgndate = #{bgndate,jdbcType=INTEGER},
+      enddate = #{enddate,jdbcType=INTEGER},
+      language = #{language,jdbcType=VARCHAR},
+      cancel_reson = #{cancelReson,jdbcType=VARCHAR},
+      cancel_time = #{cancelTime,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      guider_name = #{guiderName,jdbcType=VARCHAR},
+      guider_sex = #{guiderSex,jdbcType=BIT},
+      guider_age = #{guiderAge,jdbcType=VARCHAR},
+      guider_code = #{guiderCode,jdbcType=VARCHAR},
+      guider_img = #{guiderImg,jdbcType=VARCHAR},
+      guider_mobile = #{guiderMobile,jdbcType=VARCHAR},
+      face_addr = #{faceAddr,jdbcType=VARCHAR},
+      balancetype = #{balancetype,jdbcType=VARCHAR},
+      members = #{members,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.entity.TripInfoEntity">
+    update trip_info
+    set trip_no = #{tripNo,jdbcType=VARCHAR},
+      contacter_name = #{contacterName,jdbcType=VARCHAR},
+      contacter_mobile = #{contacterMobile,jdbcType=VARCHAR},
+      iqty = #{iqty,jdbcType=INTEGER},
+      bgndate = #{bgndate,jdbcType=INTEGER},
+      enddate = #{enddate,jdbcType=INTEGER},
+      language = #{language,jdbcType=VARCHAR},
+      cancel_reson = #{cancelReson,jdbcType=VARCHAR},
+      cancel_time = #{cancelTime,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      guider_name = #{guiderName,jdbcType=VARCHAR},
+      guider_sex = #{guiderSex,jdbcType=BIT},
+      guider_age = #{guiderAge,jdbcType=VARCHAR},
+      guider_code = #{guiderCode,jdbcType=VARCHAR},
+      guider_img = #{guiderImg,jdbcType=VARCHAR},
+      guider_mobile = #{guiderMobile,jdbcType=VARCHAR},
+      face_addr = #{faceAddr,jdbcType=VARCHAR},
+      balancetype = #{balancetype,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

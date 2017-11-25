@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.TripEntityMapper">
+  <resultMap id="BaseResultMap" type="com.test.entity.TripEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="trip_no" jdbcType="VARCHAR" property="tripNo" />
+    <result column="inviteid" jdbcType="VARCHAR" property="inviteid" />
+    <result column="tripper_uid" jdbcType="INTEGER" property="tripperUid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="child_status" jdbcType="VARCHAR" property="childStatus" />
+    <result column="guider_amount" jdbcType="DOUBLE" property="guiderAmount" />
+    <result column="trip_amount" jdbcType="DOUBLE" property="tripAmount" />
+    <result column="insurance_amount" jdbcType="DOUBLE" property="insuranceAmount" />
+    <result column="refund_amount" jdbcType="DOUBLE" property="refundAmount" />
+    <result column="conpon_amount" jdbcType="DOUBLE" property="conponAmount" />
+    <result column="profit_amount" jdbcType="DOUBLE" property="profitAmount" />
+    <result column="compensation_amount" jdbcType="DOUBLE" property="compensationAmount" />
+    <result column="penalty_amount" jdbcType="DOUBLE" property="penaltyAmount" />
+    <result column="yyyd_amount" jdbcType="DOUBLE" property="yyydAmount" />
+    <result column="refund_time" jdbcType="INTEGER" property="refundTime" />
+    <result column="pay_time" jdbcType="INTEGER" property="payTime" />
+    <result column="pay_channel" jdbcType="VARCHAR" property="payChannel" />
+    <result column="balance_count" jdbcType="VARCHAR" property="balanceCount" />
+    <result column="trip_time" jdbcType="INTEGER" property="tripTime" />
+    <result column="is_del" jdbcType="BIT" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trip_no, inviteid, tripper_uid, status, child_status, guider_amount, trip_amount, 
+    insurance_amount, refund_amount, conpon_amount, profit_amount, compensation_amount, 
+    penalty_amount, yyyd_amount, refund_time, pay_time, pay_channel, balance_count, trip_time, 
+    is_del
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trip
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trip
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.entity.TripEntity">
+    insert into trip (id, trip_no, inviteid, 
+      tripper_uid, status, child_status, 
+      guider_amount, trip_amount, insurance_amount, 
+      refund_amount, conpon_amount, profit_amount, 
+      compensation_amount, penalty_amount, yyyd_amount, 
+      refund_time, pay_time, pay_channel, 
+      balance_count, trip_time, is_del
+      )
+    values (#{id,jdbcType=INTEGER}, #{tripNo,jdbcType=VARCHAR}, #{inviteid,jdbcType=VARCHAR}, 
+      #{tripperUid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{childStatus,jdbcType=VARCHAR}, 
+      #{guiderAmount,jdbcType=DOUBLE}, #{tripAmount,jdbcType=DOUBLE}, #{insuranceAmount,jdbcType=DOUBLE}, 
+      #{refundAmount,jdbcType=DOUBLE}, #{conponAmount,jdbcType=DOUBLE}, #{profitAmount,jdbcType=DOUBLE}, 
+      #{compensationAmount,jdbcType=DOUBLE}, #{penaltyAmount,jdbcType=DOUBLE}, #{yyydAmount,jdbcType=DOUBLE}, 
+      #{refundTime,jdbcType=INTEGER}, #{payTime,jdbcType=INTEGER}, #{payChannel,jdbcType=VARCHAR}, 
+      #{balanceCount,jdbcType=VARCHAR}, #{tripTime,jdbcType=INTEGER}, #{isDel,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.entity.TripEntity">
+    insert into trip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tripNo != null">
+        trip_no,
+      </if>
+      <if test="inviteid != null">
+        inviteid,
+      </if>
+      <if test="tripperUid != null">
+        tripper_uid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="childStatus != null">
+        child_status,
+      </if>
+      <if test="guiderAmount != null">
+        guider_amount,
+      </if>
+      <if test="tripAmount != null">
+        trip_amount,
+      </if>
+      <if test="insuranceAmount != null">
+        insurance_amount,
+      </if>
+      <if test="refundAmount != null">
+        refund_amount,
+      </if>
+      <if test="conponAmount != null">
+        conpon_amount,
+      </if>
+      <if test="profitAmount != null">
+        profit_amount,
+      </if>
+      <if test="compensationAmount != null">
+        compensation_amount,
+      </if>
+      <if test="penaltyAmount != null">
+        penalty_amount,
+      </if>
+      <if test="yyydAmount != null">
+        yyyd_amount,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="balanceCount != null">
+        balance_count,
+      </if>
+      <if test="tripTime != null">
+        trip_time,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tripNo != null">
+        #{tripNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteid != null">
+        #{inviteid,jdbcType=VARCHAR},
+      </if>
+      <if test="tripperUid != null">
+        #{tripperUid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="childStatus != null">
+        #{childStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderAmount != null">
+        #{guiderAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="tripAmount != null">
+        #{tripAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="insuranceAmount != null">
+        #{insuranceAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundAmount != null">
+        #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="conponAmount != null">
+        #{conponAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="profitAmount != null">
+        #{profitAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="compensationAmount != null">
+        #{compensationAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="penaltyAmount != null">
+        #{penaltyAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="yyydAmount != null">
+        #{yyydAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=INTEGER},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceCount != null">
+        #{balanceCount,jdbcType=VARCHAR},
+      </if>
+      <if test="tripTime != null">
+        #{tripTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.entity.TripEntity">
+    update trip
+    <set>
+      <if test="tripNo != null">
+        trip_no = #{tripNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteid != null">
+        inviteid = #{inviteid,jdbcType=VARCHAR},
+      </if>
+      <if test="tripperUid != null">
+        tripper_uid = #{tripperUid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="childStatus != null">
+        child_status = #{childStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="guiderAmount != null">
+        guider_amount = #{guiderAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="tripAmount != null">
+        trip_amount = #{tripAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="insuranceAmount != null">
+        insurance_amount = #{insuranceAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundAmount != null">
+        refund_amount = #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="conponAmount != null">
+        conpon_amount = #{conponAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="profitAmount != null">
+        profit_amount = #{profitAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="compensationAmount != null">
+        compensation_amount = #{compensationAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="penaltyAmount != null">
+        penalty_amount = #{penaltyAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="yyydAmount != null">
+        yyyd_amount = #{yyydAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=INTEGER},
+      </if>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceCount != null">
+        balance_count = #{balanceCount,jdbcType=VARCHAR},
+      </if>
+      <if test="tripTime != null">
+        trip_time = #{tripTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.entity.TripEntity">
+    update trip
+    set trip_no = #{tripNo,jdbcType=VARCHAR},
+      inviteid = #{inviteid,jdbcType=VARCHAR},
+      tripper_uid = #{tripperUid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      child_status = #{childStatus,jdbcType=VARCHAR},
+      guider_amount = #{guiderAmount,jdbcType=DOUBLE},
+      trip_amount = #{tripAmount,jdbcType=DOUBLE},
+      insurance_amount = #{insuranceAmount,jdbcType=DOUBLE},
+      refund_amount = #{refundAmount,jdbcType=DOUBLE},
+      conpon_amount = #{conponAmount,jdbcType=DOUBLE},
+      profit_amount = #{profitAmount,jdbcType=DOUBLE},
+      compensation_amount = #{compensationAmount,jdbcType=DOUBLE},
+      penalty_amount = #{penaltyAmount,jdbcType=DOUBLE},
+      yyyd_amount = #{yyydAmount,jdbcType=DOUBLE},
+      refund_time = #{refundTime,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=INTEGER},
+      pay_channel = #{payChannel,jdbcType=VARCHAR},
+      balance_count = #{balanceCount,jdbcType=VARCHAR},
+      trip_time = #{tripTime,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

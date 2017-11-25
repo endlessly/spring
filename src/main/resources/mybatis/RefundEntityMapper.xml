@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mapper.RefundEntityMapper">
+  <resultMap id="BaseResultMap" type="com.test.entity.RefundEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="trip_no" jdbcType="VARCHAR" property="tripNo" />
+    <result column="pay_no" jdbcType="VARCHAR" property="payNo" />
+    <result column="request_refund_no" jdbcType="VARCHAR" property="requestRefundNo" />
+    <result column="response_refund_no" jdbcType="VARCHAR" property="responseRefundNo" />
+    <result column="refund_money" jdbcType="DOUBLE" property="refundMoney" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="is_refund" jdbcType="INTEGER" property="isRefund" />
+    <result column="refund_channel" jdbcType="VARCHAR" property="refundChannel" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="refund_time" jdbcType="INTEGER" property="refundTime" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trip_no, pay_no, request_refund_no, response_refund_no, refund_money, type, is_refund, 
+    refund_channel, reason, refund_time, add_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from refund
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from refund
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.entity.RefundEntity">
+    insert into refund (id, trip_no, pay_no, 
+      request_refund_no, response_refund_no, refund_money, 
+      type, is_refund, refund_channel, 
+      reason, refund_time, add_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{tripNo,jdbcType=VARCHAR}, #{payNo,jdbcType=VARCHAR}, 
+      #{requestRefundNo,jdbcType=VARCHAR}, #{responseRefundNo,jdbcType=VARCHAR}, #{refundMoney,jdbcType=DOUBLE}, 
+      #{type,jdbcType=VARCHAR}, #{isRefund,jdbcType=INTEGER}, #{refundChannel,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{refundTime,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.entity.RefundEntity">
+    insert into refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tripNo != null">
+        trip_no,
+      </if>
+      <if test="payNo != null">
+        pay_no,
+      </if>
+      <if test="requestRefundNo != null">
+        request_refund_no,
+      </if>
+      <if test="responseRefundNo != null">
+        response_refund_no,
+      </if>
+      <if test="refundMoney != null">
+        refund_money,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="isRefund != null">
+        is_refund,
+      </if>
+      <if test="refundChannel != null">
+        refund_channel,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tripNo != null">
+        #{tripNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payNo != null">
+        #{payNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestRefundNo != null">
+        #{requestRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responseRefundNo != null">
+        #{responseRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMoney != null">
+        #{refundMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="isRefund != null">
+        #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="refundChannel != null">
+        #{refundChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.entity.RefundEntity">
+    update refund
+    <set>
+      <if test="tripNo != null">
+        trip_no = #{tripNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payNo != null">
+        pay_no = #{payNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestRefundNo != null">
+        request_refund_no = #{requestRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="responseRefundNo != null">
+        response_refund_no = #{responseRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundMoney != null">
+        refund_money = #{refundMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="isRefund != null">
+        is_refund = #{isRefund,jdbcType=INTEGER},
+      </if>
+      <if test="refundChannel != null">
+        refund_channel = #{refundChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.entity.RefundEntity">
+    update refund
+    set trip_no = #{tripNo,jdbcType=VARCHAR},
+      pay_no = #{payNo,jdbcType=VARCHAR},
+      request_refund_no = #{requestRefundNo,jdbcType=VARCHAR},
+      response_refund_no = #{responseRefundNo,jdbcType=VARCHAR},
+      refund_money = #{refundMoney,jdbcType=DOUBLE},
+      type = #{type,jdbcType=VARCHAR},
+      is_refund = #{isRefund,jdbcType=INTEGER},
+      refund_channel = #{refundChannel,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      refund_time = #{refundTime,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
